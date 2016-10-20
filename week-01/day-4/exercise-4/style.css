@@ -1,0 +1,16 @@
+body {
+  margin-left: 48px;
+}
+
+h1,
+h2 {
+  color: #157101;
+}
+
+em {
+  color: #0000ff;
+}
+
+pre {
+  text-align: left;
+}
