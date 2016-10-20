@@ -1,0 +1,25 @@
+body {
+  margin: 0;
+  width: 351px;
+  length: 329px;
+}
+
+.picture {
+  margin: 27px 57px 47px 46px;
+}
+
+.box {
+  color: #e21700;
+  font-family: serif;
+  background-color: #ffff00;
+  border: 4px solid black;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  width: 248px;
+  height: 78px;
+  font-size: 30px;
+  padding-top: 22px;
+  padding-right: 0px;
+  padding-left: 20px;
+}
