@@ -1,0 +1,43 @@
+header img {
+  display: block ;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+article {
+    font-family: Josefin Sans, sans-serif;
+    line-height: 1.5;
+}
+
+section {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+section img {
+  display: block;
+  margin-left: -84px;
+}
+
+.top {
+  font-size: 20px;
+  padding-top: 30px;
+}
+
+h1 {
+  text-transform: uppercase;
+  padding-top: 30px;
+  font-size: 25px;
+}
+
+ul {
+  list-style-type: square;
+}
+
+p {
+  padding-bottom: 30px;
+}
+
+footer {
+  border-top: 4px solid black;
+}
