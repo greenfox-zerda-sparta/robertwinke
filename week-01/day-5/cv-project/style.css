@@ -1,12 +1,12 @@
 header img {
-  display: block ;
+  display: block;
   max-width: 1280px;
   margin: 0 auto;
 }
 
 article {
-    font-family: Josefin Sans, sans-serif;
-    line-height: 1.5;
+  font-family: Josefin Sans, sans-serif;
+  line-height: 1.5;
 }
 
 section {
