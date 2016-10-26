@@ -19,31 +19,59 @@ using namespace std;
 //Print out the whole board. Make some moves and illustrate them by printing out the whole board again.
 //Create a function to do so. it should be called "printBoard"
 
-void fillboard (string board[8][8]){
+string board[8][8];
+
+void fillboard(){
   for (int row = 0; row < 8; row++) {
     for (int column = 0; column < 8; column++) {
       if ((row+column)%2 == 0) {
         board[row][column] = "_";
       }
       else {
+        if (row < 3){
+          board[row][column] = "W";
+        }
+        else if (row > 4){
+          board[row][column] = "B";
+        }
+        else {
         board[row][column] = "#";
+        }
       }
     }
   }
 }
-void printboard(string board[8][8]) {
+void printboard() {
+  cout << "01234567" << endl;
   for (int row = 0; row < 8; row++) {
     for (int column = 0; column < 8; column++) {
       cout << board[row][column];
     }
-    cout << endl;
+    cout << " " << row << endl;
+  }
+  cout << endl;
+}
+
+void move(int row, int column, int mrow, int mcolumn){
+  if (board[mrow][mcolumn] == "#"){                           //why do i need "" instead of ' '???
+    board[mrow][mcolumn] = board[row][column];
+    board[row][column] = '#';
   }
 }
 
 int main(int argv, char** argc){
-  string board[8][8];
-  fillboard(board);
-  printboard(board);
+
+  fillboard();
+
+  int row, column, mrow, mcolumn;
+
+  while (1) {
+    printboard();
+    cout << "what (row x col) to where (row x col) from 0 to 7" << endl;
+    cin >> row >> column >> mrow >> mcolumn;
+    move(row, column, mrow, mcolumn);
+  }
+
 
   return 0;
 }
