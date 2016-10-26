@@ -1,0 +1,26 @@
+/*
+ * 04.cpp
+ *
+ *  Created on: Oct 26, 2016
+ *      Author: robertwinke
+ */
+
+
+
+
+#include <iostream>
+
+using namespace std;
+
+int main() {
+  int numbers[] = {5, 6, 7, 8, 9};
+  int* number_pointer;
+  // The "number_pointer" should point to the first element of the array called "numbers",
+  // than please print its value with it.
+
+  number_pointer = numbers;
+
+  cout << *number_pointer << endl;
+
+  return 0;
+}
