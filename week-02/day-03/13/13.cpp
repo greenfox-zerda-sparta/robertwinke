@@ -4,7 +4,6 @@
  *  Created on: Oct 26, 2016
  *      Author: robertwinke
  */
-/*
 
 #include <iostream>
 #include <string>
@@ -26,21 +25,52 @@ void printString(string sentence){
       cout << endl;
     }
   }
+  cout << endl;
 }
 
-void stringAdder(string sentence, string *array, int l_array){
+int wordCounter (string sentence){
+  int count = 1;
+  for(int i = 0; sentence[i] != '\0'; i++) {
+    if (sentence[i] == ' '){
+      count++;
+    }
+  }
 
+  return count;
+}
 
+void stringAdder(string sentence, string *array){
+  int index = 0;
+  for(int j = 0; sentence[j] != '\0'; j++) {
+    if (sentence[j] != ' '){
+      array[index] += sentence[j];
+    }
+    else {
+      index++;
+    }
+  }
+}
+
+void printArray(string *array, int length){
+  for (int i = 0; i < length; i++){
+    cout << array[i] << " ";
+  }
+  cout << endl;
 }
 
 int main(int argc, char **argv){
-  string sentence = "dssds sdsda sdfds";
-  string array[5] = {"fsgdfgd", "ddfgdd"};
+  string sentence = "alma körte barack szilva";
+  int length = wordCounter(sentence);
+  string array[length];
 
   printString(sentence);
+
+  stringAdder(sentence, array);
+  printArray(array, length);
+
 
   return 0;
 }
 
-*/
+
 
