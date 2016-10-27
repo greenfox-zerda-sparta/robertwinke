@@ -23,6 +23,11 @@
 // If the program knows enough it should tell the picked number like:
 // Your number is: 8
 
+int average(int min, int max){
+  int av = (min + max) / 2;
+  return av;
+}
+
 using namespace std;
 
 int main() {
@@ -33,29 +38,26 @@ int main() {
   cout << "set a min and a max" << endl;
   cin >> min >> max;
 
-  cout << "is it smaller than " << max << "[y/n]" <<endl;
+
+  cout << "is it smaller than " << average(min, max) << endl;
   cin >> input;
-  if (input == 'n'){
-    cout << "your answer is " << max << endl;
-  }
-  else {
-    while (min != max){
-      if (input == 'y'){
-        min = (min + max) / 2;
-        cout << "is it smaller than " << min << endl;
-        cin >> input;
+
+      while (min != max){
+        if (input == 'n'){
+          min = average(min, max);
+          cout << "is it smaller than " << average(min, max) << endl;
+          cin >> input;
+        }
+        else if (input == 'y') {
+          max = average(min, max);
+          cout << "is it smaller than " << average(min, max) << endl;
+          cin >> input;
+        }
+        else {
+          cout << "wrong input try again [y/n]" << endl;
+          cin >> input;
+        }
       }
-      else if (input == 'n') {
-        max = (min + max) / 2;
-        cout << "is it smaller than " << max << endl;
-        cin >> input;
-      }
-      else {
-        cout << "wrong input try again [y/n]" << endl;
-        cin >> input;
-      }
-    }
-  }
 
   cout << "you thoguht of "<< max << endl;
   return 0;
