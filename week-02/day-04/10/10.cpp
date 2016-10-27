@@ -42,22 +42,22 @@ int main() {
   cout << "is it smaller than " << average(min, max) << endl;
   cin >> input;
 
-      while (min != max){
-        if (input == 'n'){
-          min = average(min, max);
-          cout << "is it smaller than " << average(min, max) << endl;
-          cin >> input;
-        }
-        else if (input == 'y') {
-          max = average(min, max);
-          cout << "is it smaller than " << average(min, max) << endl;
-          cin >> input;
-        }
-        else {
-          cout << "wrong input try again [y/n]" << endl;
-          cin >> input;
-        }
-      }
+  while (min != max){
+    if (input == 'n'){
+      min = average(min, max);
+      cout << "is it smaller than " << average(min, max) << endl;
+      cin >> input;
+    }
+    else if (input == 'y') {
+      max = average(min, max);
+      cout << "is it smaller than " << average(min, max) << endl;
+      cin >> input;
+    }
+    else {
+      cout << "wrong input try again [y/n]" << endl;
+      cin >> input;
+    }
+  }
 
   cout << "you thoguht of "<< max << endl;
   return 0;
