@@ -53,26 +53,61 @@ void printboard() {
 }
 
 void move(int row, int column, int mrow, int mcolumn){
-  if (board[mrow][mcolumn] == "#"){                           //why do i need "" instead of ' '???
+  if (board[mrow][mcolumn] == "#"){
     board[mrow][mcolumn] = board[row][column];
     board[row][column] = '#';
+  }
+  else {
+    cout << "WRONG MOVE! try again!" << endl << endl;
+  }
+}
+
+void askStep(int& row, int& column, int& mrow, int& mcolumn){   //passing by reference
+  cout << "Which piece would you like to move and where? (row x col) from 0 to 7" << endl;
+  cin >> row >> column >> mrow >> mcolumn;
+}
+
+void askRemove(int& row, int& col){
+  cout << "Which piece do you want to remove?" << endl;
+  cin >> row >> col;
+  cout << endl;
+}
+
+void removePiece(int& row, int& col){
+  if (board[row][col] == "W" || board[row][col] == "B"){
+    board[row][col] = "#";
+  }
+  else {
+    cout << "No piece in that place" << endl << endl;
   }
 }
 
 int main(int argv, char** argc){
 
-  fillboard();
-
   int row, column, mrow, mcolumn;
+  char ans;
+
+  fillboard();
 
   while (1) {
     printboard();
-    cout << "what (row x col) to where (row x col) from 0 to 7" << endl;
-    cin >> row >> column >> mrow >> mcolumn;
-    move(row, column, mrow, mcolumn);
+    cout << "Would you like to remove a piece?[y/n] To Esc press[e]" << endl;
+    cin >> ans;
+    if (ans == 'y') {
+      askRemove(row,column);
+      removePiece(row, column);
+    }
+    else if (ans == 'n') {
+      askStep(row, column, mrow, mcolumn);
+      move(row, column, mrow, mcolumn);
+    }
+    else if (ans == 'e') {
+      break;
+    }
+    else {
+      cout << "Invalid answer" << endl;
+    }
   }
-
 
   return 0;
 }
-
