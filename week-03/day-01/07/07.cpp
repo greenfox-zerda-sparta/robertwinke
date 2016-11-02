@@ -50,7 +50,7 @@ int* unionfunc(int* array1, int* array2, int size1, int size2) {
 
   for (int i = 0; i < size1; i++) {
     output_pointer[i] = array1[i];
-    //cout << output_pointer[i] << endl;
+    //cout << "dfhdf" << endl;
   }
 
   for (int i = 0; i < new_size; i++) {
