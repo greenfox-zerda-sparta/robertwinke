@@ -35,6 +35,7 @@ int* resize(int* pointer, int size, int new_size) {
   for (int i = 0; i < new_size; i++){
     if (i < size) {
       new_pointer[i] = pointer[i];
+      //cout << i << endl;
     }
   }
   delete[] pointer;
@@ -50,18 +51,18 @@ int* unionfunc(int* array1, int* array2, int size1, int size2) {
 
   for (int i = 0; i < size1; i++) {
     output_pointer[i] = array1[i];
-    //cout << "dfhdf" << endl;
+    //cout << i << endl;
   }
 
-  for (int i = 0; i < new_size; i++) {
-    if (!contains(output_pointer, new_size, array2[i])) {
+  for (int i = 0; i < size2; i++) {
+    if (!contains(output_pointer, j, array2[i])) {
       //cout << "yay" << endl;
       output_pointer[j] = array2[i];
       j++;
     }
   }
 
-  output_pointer = resize(output_pointer, new_size, j-size1);
+  output_pointer = resize(output_pointer, new_size, j);
 
   return output_pointer;
 }
