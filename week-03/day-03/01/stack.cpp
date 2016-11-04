@@ -11,7 +11,7 @@ using namespace std;
 
 struct Stack {
   unsigned int size;
-  double* arr = NULL;
+  double* arr;
 };
 
 Stack* stack_construct(double input[], int size){
@@ -43,7 +43,6 @@ void stack_push(Stack& stack, double value) {
 }
 
 double stack_pop(Stack& stack) {
-
   if (stack.size == 0) {
     return -1;
   }
@@ -58,7 +57,6 @@ double stack_pop(Stack& stack) {
 
   stack.arr = new_array;
   stack.size--;
-
 
   return return_value;
 }
@@ -80,17 +78,17 @@ void print_stack(Stack& stack) {
 
 int main() {
   double array[] = {1,2,3};
-  Stack* ize = stack_construct(array, 3);
+  Stack* my_stack = stack_construct(array, 3);
 
-  stack_push(*ize, 4);
-  print_stack(*ize);
+  stack_push(*myStack, 4);
+  print_stack(*my_stack);
 
-  cout << endl << stack_pop(*ize) << endl << endl;
+  cout << endl << stack_pop(*my_stack) << endl << endl;
 
-  print_stack(*ize);
+  print_stack(*my_stack);
 
-  delete[] ize->arr;
-  delete ize;
+  delete[] my_stack->arr;
+  delete my_stack;
 
   return 0;
 }
