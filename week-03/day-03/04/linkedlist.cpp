@@ -13,7 +13,7 @@ struct Node {
   Node* next = NULL;
 };
 
-Node* list_construct_one(double value){
+Node* list_construct_one(double value) {
   Node* new_node = new Node;
   new_node->value = value;
   new_node->next = NULL;
@@ -21,18 +21,22 @@ Node* list_construct_one(double value){
 }
 
 unsigned int list_length(Node& head) {
-  int length = 1;
-  Node* temp = head.next;
-  while(temp != NULL) {
-    temp = temp->next;
-    length++;
+  unsigned int length = 1;
+  if (&head == NULL) {
+    length = 0;
   }
-
+  else {
+    Node* temp = head.next;
+    while(temp != NULL) {
+      temp = temp->next;
+      length++;
+    }
+  }
   return length;
 }
 
 Node* list_get_last(Node& head) {
-  Node* temp = head.next;
+  Node* temp = &head;
   while(temp->next != NULL) {
     temp = temp->next;
   }
@@ -40,44 +44,39 @@ Node* list_get_last(Node& head) {
 }
 
 void list_append(Node& head, double value) {
-  Node* temp = &head;
-  while(temp->next != NULL) {
-    temp = temp->next;
-  }
-
+  Node* temp = list_get_last(head);
   Node* new_node = list_construct_one(value);
   temp->next = new_node;
-
 }
 
 Node* list_at(Node& head, unsigned int index) {
   Node* temp = &head;
-
   for (unsigned int i = 0; i < index; i++) {
     temp = temp->next;
   }
- return temp;
+  return temp;
 }
 
 void list_insert_aka_linzert(Node& head, unsigned int index, double value) {
-  Node* temp = &head;
+  Node* temp =list_at(head, index);
   Node* new_node = list_construct_one(value);
-  for (unsigned int i = 0; i < index; i++) {
-    temp = temp->next;
-
-  }
   new_node->next = temp->next;
   temp->next = new_node;
 }
 
-unsigned int list_find(Node& head, double value) {
-  unsigned int index = 0;
+int list_find(Node& head, double value) {
+  int index = 0;
   Node* temp = &head;
   while (temp->value != value) {
     temp = temp->next;
     index++;
   }
-  return index;
+  if (list_at(head, index)->value == value) {
+    return index;
+  }
+  else {
+    return -1;
+  }
 }
 
 void list_remove(Node& head, double value) {    //removes element after value :(
@@ -85,14 +84,12 @@ void list_remove(Node& head, double value) {    //removes element after value :(
   while (temp->value != value) {
     temp = temp->next;
   }
+  delete temp->next;
   temp->next = temp->next->next;
 }
 
 void list_concat(Node& head, Node& other_list) {
-  Node* temp = &head;
-  while (temp->next != NULL) {
-    temp = temp->next;
-  }
+  Node* temp = list_get_last(head);
   temp->next = &other_list;
 }
 
@@ -102,7 +99,6 @@ void list_print(Node& head) {
   while(temp != NULL) {
     cout << temp->value << " ";
     temp = temp->next;
-
   }
   cout << endl;
 }
@@ -147,6 +143,7 @@ int main() {
 
 
   Node* head2 = list_construct_one(11);
+
   list_append(*head2, 13);
   list_append(*head2, 15);
   list_append(*head2, 17);
@@ -158,8 +155,6 @@ int main() {
 
 
   list_destruct(*head2);
-
-  cout << second->value << endl;
 
   list_destruct(*head);
 
