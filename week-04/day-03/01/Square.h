@@ -1,0 +1,22 @@
+/*
+ * Square.h
+ *
+ *  Created on: Nov 9, 2016
+ *      Author: robertwinke
+ */
+
+#include "Shape.h"
+
+#ifndef SQUARE_H_
+#define SQUARE_H_
+
+class Square: public Shape {
+
+  public:
+    string* getName();
+
+};
+
+
+
+#endif /* SQUARE_H_ */
