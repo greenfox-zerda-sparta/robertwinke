@@ -19,12 +19,12 @@ class IntList {
     virtual void deleteElement(int index) = 0;
     virtual int getFirst() = 0;
     virtual int getLast() = 0;
-    int getLength();
-    bool isEmpty();
+    //virtual void printList() = 0;
     void incrementLength();
     void decrementLength();
     virtual ~IntList();
-
+    int getLength();
+    bool isEmpty();
 };
 
 
