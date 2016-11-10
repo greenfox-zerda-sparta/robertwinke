@@ -49,8 +49,8 @@ void IntArrayList::deleteElement(int index) {
   for (int i = 0; i < index; i++) {
     new_array[i] = array[i];
   }
-  for (int i = index + 1; i < getLength(); i++) {
-    new_array[i-1] = array[i];
+  for (int i = index; i < getLength(); i++) {
+    new_array[i] = array[i + 1];
   }
   delete[] array;
   array = new_array;
@@ -71,7 +71,13 @@ int IntArrayList::getLast() {
     return -1;
   }
   else {
-    return array[getLength()-1];
+    return array[getLength() - 1];
+  }
+}
+
+void IntArrayList::printList() {
+  for (int i = 0; i < getLength(); i++) {
+    cout << array[i] << " ";
   }
 }
 

@@ -20,9 +20,24 @@ int main() {
   IntArrayList* my_list = new IntArrayList;
 
   my_list->append(5);
+  my_list->append(6);
+  my_list->append(7);
+  my_list->append(8);
 
-  cout << my_list->getLength() << endl;
-  cout << my_list->getLast();
+  my_list->printList();
+  cout << endl;
+
+  cout << "first " << my_list->getFirst() << endl;
+  cout << "length " << my_list->getLength() << endl;
+  cout << "last " << my_list->getLast() << endl;
+
+  my_list->deleteElement(0);
+  my_list->printList();
+  cout << endl;
+
+  cout << "first " << my_list->getFirst() << endl;
+  cout <<"length " <<  my_list->getLength() << endl;
+  cout << "last " << my_list->getLast() << endl;
 
   delete my_list;
   return 0;

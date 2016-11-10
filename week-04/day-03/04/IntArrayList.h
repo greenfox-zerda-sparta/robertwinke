@@ -17,6 +17,7 @@ public:
   void deleteElement(int index);
   int getFirst();
   int getLast();
+  void printList();
   ~IntArrayList();
 
 private:
