@@ -24,6 +24,7 @@ public:
   virtual void rate(unsigned int rating);
   int getRating();
   int getRateCount();
+  std::string getTitle();
   std::string getArtist();
   std::string getGenre();
   float getAverageRating();

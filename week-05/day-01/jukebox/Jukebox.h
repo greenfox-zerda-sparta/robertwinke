@@ -21,6 +21,8 @@ public:
   void rate_song(Song& song, int rating);
   float get_artist_rating(std::string artist);
   float get_genre_rating (std::string genre);
+  std::string top_rated_title();
+  std::string top_rated_genre();
   ~Jukebox();
 };
 

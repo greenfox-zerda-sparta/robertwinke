@@ -36,6 +36,9 @@ int Song::getRateCount() {
 std::string Song::getArtist() {
   return artist;
 }
+std::string Song::getTitle() {
+  return title;
+}
 
 float Song::getAverageRating() {
   return rating/(float)rateCount;
