@@ -6,19 +6,15 @@
  */
 
 
-
 #include <iostream>
 #include <fstream>
 
 using namespace std;
 
-int main() {
-
+void encryption (int offset) {
   ifstream my_file("twelfth-exercise.txt");
   ofstream output_file("twelfth-output.txt");
   string line;
-
-  int offset = 1;
 
   if (my_file.is_open()) {
     while(getline(my_file,line)) {
@@ -33,14 +29,15 @@ int main() {
     }
     output_file << "\n";
   }
-
-
-
-
   my_file.close();
   output_file.close();
 
 
+}
+
+int main() {
+
+  encryption(1);
   return 0;
 }
 
