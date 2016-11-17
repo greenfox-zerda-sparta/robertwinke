@@ -15,10 +15,7 @@ Taskhandler::Taskhandler() {
   if (newTasks.is_open()) {
     taskCount = 0;
     while(getline(newTasks,line)) {
-      std::cout << line << std::endl;
       addTask(line);
-      std::cout << taskCount << std::endl;
-      std::cout << line << std::endl;
     }
   }
   else {
@@ -31,19 +28,15 @@ Taskhandler::Taskhandler() {
 void Taskhandler::addTask(std::string task) {
   Task* new_task = new Task(task);
 
-
   Task** temp = new Task*[taskCount + 1];
   if (tasks != NULL) {
     for (unsigned int i = 0; i < taskCount+1; i++) {
-      std::cout << i << std::endl;
       temp[i] = tasks[i];
     }
   }
   temp[taskCount] = new_task;
-  //delete[] tasks;
-  std::cout << "\nHELLO\n\n\n";
+  delete[] tasks;
   tasks = temp;
-  std::cout << tasks[0]->get_descriptipn();
   taskCount++;
 }
 

@@ -16,14 +16,7 @@
 
 using namespace std;
 
-int taskNumber = 1;
 
-string toString(int number) {
-  stringstream ss;
-  ss << number;
-  string str = ss.str();
-  return str;
-}
 
 void filePrint(string file) {
 
@@ -37,24 +30,10 @@ void filePrint(string file) {
 
 }
 
-void addTask(string task) {
-
-  string fileName = "textFiles/task_" + toString(taskNumber) + ".txt";
-  taskNumber++;
-
-  ofstream newTask(fileName.c_str());
-  ofstream contents("textFiles/tableOfContents.txt");
-
-  contents << fileName;
-
-  newTask << task;
-
-  newTask.close();
-}
 
 int main(int argc, char* argv[]) {
 
-  Taskhandler todo;
+  Taskhandler* todo = new Taskhandler;
 
   if (argc == 1) {
     filePrint("textFiles/usage.txt");
@@ -64,7 +43,7 @@ int main(int argc, char* argv[]) {
       cout << "lists all the tasks: \n";
     }
     else if (strcmp(argv[1], "-a") == 0) {
-      todo.addTask(argv[2]);
+      todo->addTask(argv[2]);
     }
     else if (strcmp(argv[1], "-r") == 0) {
       cout << "removes task: \n";
@@ -77,5 +56,6 @@ int main(int argc, char* argv[]) {
     }
   }
 
+  delete todo;
 	return 0;
 }

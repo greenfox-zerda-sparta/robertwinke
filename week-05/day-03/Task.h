@@ -12,7 +12,7 @@
 
 class Task {
 private:
-  std::string* description;
+  std::string description;
   bool completed;
 
 public:
