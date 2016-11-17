@@ -21,6 +21,8 @@ public:
   void complete();
   std::string get_descriptipn();
   bool getCompleted();
+  void setCompleted(bool);
+
   ~Task();
 };
 

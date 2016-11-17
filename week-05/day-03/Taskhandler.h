@@ -18,8 +18,8 @@ private:
 
 public:
   Taskhandler();
-  void addTask(std::string);
-  void completeTask(std::string);
+  void addTask(std::string, bool);
+  void completeTask(int);
   void removeTask();
   ~Taskhandler();
 };

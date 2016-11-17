@@ -10,12 +10,29 @@
 
 
 Taskhandler::Taskhandler() {
+
   std::ifstream newTasks("textFiles/newTasks.txt");
-  std::string line;
+  std::string line,noline;
+  std::string word;
+  int indexOfLine = 0;
+
+  while(getline(newTasks, noline)) {
+    indexOfLine++;
+  }
+  newTasks.close();
+
+  newTasks.open("textFiles/newTasks.txt");
   if (newTasks.is_open()) {
     taskCount = 0;
-    while(getline(newTasks,line)) {
-      addTask(line);
+    for(int j=0; j < indexOfLine; j++) {
+      getline(newTasks,word,',');
+      getline(newTasks,line);
+      if (word[1] == 'X') {
+        addTask(line, true);
+      }
+      else  {
+        addTask(line, false);
+      }
     }
   }
   else {
@@ -25,14 +42,15 @@ Taskhandler::Taskhandler() {
   newTasks.close();
 }
 
-void Taskhandler::addTask(std::string task) {
+void Taskhandler::addTask(std::string task, bool done) {
   Task* new_task = new Task(task);
 
-  Task** temp = new Task*[taskCount + 1];
-  if (tasks != NULL) {
-    for (unsigned int i = 0; i < taskCount+1; i++) {
-      temp[i] = tasks[i];
-    }
+Task** temp = new Task*[taskCount + 1];
+  for (int i = 0; i < taskCount; i++) {
+    temp[i] = tasks[i];
+  }
+  if (done) {
+    new_task->complete();
   }
   temp[taskCount] = new_task;
   delete[] tasks;
@@ -40,13 +58,9 @@ void Taskhandler::addTask(std::string task) {
   taskCount++;
 }
 
-void Taskhandler::completeTask(std::string task) {
+void Taskhandler::completeTask(int index) {
   if (tasks != NULL) {
-    for (unsigned int i = 0; i < taskCount; i++) {
-      if (tasks[i]->get_descriptipn() == task) {
-        tasks[i]->complete();
-      }
-    }
+    tasks[index-1]->complete();
   }
 }
 void Taskhandler::removeTask() {
@@ -54,8 +68,13 @@ void Taskhandler::removeTask() {
 }
 Taskhandler::~Taskhandler() {
   std::ofstream newTasks("textFiles/newTasks.txt");
-  for (unsigned int i = 0; i < taskCount; i++) {
-    newTasks << tasks[i]->get_descriptipn() << "\n";
+  for (int i = 0; i < taskCount; i++) {
+    if (!tasks[i]->getCompleted()) {
+      newTasks << "[ ]," << tasks[i]->get_descriptipn() <<"\n";
+    }
+    else {
+      newTasks << "[X]," << tasks[i]->get_descriptipn() <<"\n";
+    }
   }
 
   newTasks.close();

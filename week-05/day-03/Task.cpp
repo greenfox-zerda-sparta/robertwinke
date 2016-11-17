@@ -19,6 +19,10 @@ void Task::set_description(std::string text) {
 void Task::complete() {
   completed = true;
 }
+void Task::setCompleted(bool isit) {
+  completed = isit;
+}
+
 std::string Task::get_descriptipn() {
   return description;
 }
