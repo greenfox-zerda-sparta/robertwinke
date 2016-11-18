@@ -5,6 +5,7 @@
  *      Author: robertwinke
  */
 #include "Taskhandler.h"
+#include "Util.h"
 #include <fstream>
 #include <iostream>
 
@@ -12,16 +13,10 @@
 Taskhandler::Taskhandler() {
 
   std::ifstream newTasks("textFiles/newTasks.txt");
-  std::string line,noline;
+  std::string line;
   std::string word;
-  int indexOfLine = 0;
+  int indexOfLine = taskCounter();
 
-  while(getline(newTasks, noline)) {
-    indexOfLine++;
-  }
-  newTasks.close();
-
-  newTasks.open("textFiles/newTasks.txt");
   if (newTasks.is_open()) {
     taskCount = 0;
     for(int j=0; j < indexOfLine; j++) {
@@ -45,7 +40,7 @@ Taskhandler::Taskhandler() {
 void Taskhandler::addTask(std::string task, bool done) {
   Task* new_task = new Task(task);
 
-Task** temp = new Task*[taskCount + 1];
+  Task** temp = new Task*[taskCount + 1];
   for (int i = 0; i < taskCount; i++) {
     temp[i] = tasks[i];
   }
@@ -59,12 +54,37 @@ Task** temp = new Task*[taskCount + 1];
 }
 
 void Taskhandler::completeTask(int index) {
-  if (tasks != NULL) {
+  if (index > taskCount || index < 1) {
+    std::cerr << "Unable to complete: Index is out of range\n";
+  }
+  else if (tasks != NULL) {
     tasks[index-1]->complete();
   }
 }
-void Taskhandler::removeTask() {
+void Taskhandler::completeAll() {
+  if (tasks != NULL) {
+    for (int i = 0; i < taskCount; i++) {
+      tasks[i]->complete();
+    }
+  }
+}
+void Taskhandler::removeTask(int index) {
+  if (index > taskCount || index < 1) {
+    std::cerr << "Unable to remove: Index is out of range\n";
+  }
+    else {
+    taskCount--;
+    Task** temp = new Task*[taskCount];
 
+    for (int i = 0; i < index-1; i++) {
+      temp[i] = tasks[i];
+    }
+    for (int i = index-1; i < taskCount; i++) {
+      temp[i] = tasks[i+1];
+    }
+    delete[] tasks;
+    tasks = temp;
+  }
 }
 Taskhandler::~Taskhandler() {
   std::ofstream newTasks("textFiles/newTasks.txt");
@@ -76,8 +96,6 @@ Taskhandler::~Taskhandler() {
       newTasks << "[X]," << tasks[i]->get_descriptipn() <<"\n";
     }
   }
-
   newTasks.close();
-
   delete[] tasks;
 }

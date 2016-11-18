@@ -20,7 +20,8 @@ public:
   Taskhandler();
   void addTask(std::string, bool);
   void completeTask(int);
-  void removeTask();
+  void completeAll();
+  void removeTask(int);
   ~Taskhandler();
 };
 
