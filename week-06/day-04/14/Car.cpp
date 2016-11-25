@@ -14,13 +14,15 @@ string cars[18] = {"Moszkvics", "Volga", "ZISZ", "Tatra", "Zbrojovka", "Hotchkis
 string colors[10] = {"Piros", "Narancssárga", "Zöld", "Kék", "Türkiz", "Barna", "Lila", "Sárga", "Fekete", "Fehér" };
 
 
+unsigned int Car::VIN_COUNT = 1;
 
-Car::Car() {
+Car::Car() :VIN(VIN_COUNT) {
   int carIndex = rand() % 18;
   int colorIndex = rand() % 10;
+  VIN_COUNT++;
   name = cars[carIndex];
   color = colors[colorIndex];
-
+  plate ="";
 }
 
 string Car::getName() {
@@ -28,4 +30,13 @@ string Car::getName() {
 }
 string Car::getColor() {
   return color;
+}
+void Car::setPlate(string plate) {
+  this->plate = plate;
+}
+int Car::getVin() {
+  return VIN;
+}
+string Car::getPlate() {
+  return plate;
 }

@@ -16,6 +16,7 @@
 
 #include "Car.h"
 #include "ParkingHouse.h"
+#include "Plate.h"
 
 using namespace std;
 
@@ -44,18 +45,22 @@ int main() {
   srand(time(NULL));
 
   ParkingHouse p(4,4,8);
+  Plate plates(128);
 
 
   for(unsigned int i = 0; i < p.vect.size(); i++) {
     for (unsigned int j = 0; j < p.vect[0].size(); j++) {
       for (unsigned int k = 0; k < p.vect[0][0].size(); k++) {
-        p.vect[i][j][k] = Car();
+        p.vect[i][j][k] = new Car();
+        p.vect[i][j][k]->setPlate(plates.getPlate(i*j*k));
       }
     }
   }
 
 
-  cout << ((Car)p.vect[2][2][2]).getName() << endl;
+  cout << p.vect[2][2][2]->getName() << endl;
+  cout << p.vect[2][2][2]->getVin() << endl;
+  cout << p.vect[2][2][2]->getPlate() << endl;
 
   return 0;
 }

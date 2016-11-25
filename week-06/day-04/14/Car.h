@@ -13,13 +13,19 @@ using namespace std;
 
 class Car {
 private:
+  static unsigned int VIN_COUNT;
+  const int VIN;   //should be const
   string name;
   string color;
+  string plate;
 
 public:
   Car();
   string getName();
   string getColor();
+  void setPlate(string);
+  string getPlate();
+  int getVin();
 };
 
 

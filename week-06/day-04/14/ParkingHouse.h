@@ -18,10 +18,10 @@ private:
   int carRow;
   int carCol;
   int floor;
-public:
-  vector<vector<vector<Car> > > vect;
+
 
 public:
+  vector<vector<vector<Car*> > > vect;
   ParkingHouse(int, int, int);
 
 };

@@ -13,7 +13,7 @@ ParkingHouse::ParkingHouse(int row, int col, int floor) {
   this->carCol = col;
   this->floor = floor;
 
-  vect = vector<vector<vector<Car> > > (floor, vector<vector<Car> > (col, vector<Car>(row)));
+  vect = vector<vector<vector<Car*> > > (floor, vector<vector<Car*> > (col, vector<Car*>(row)));
 }
 
 
