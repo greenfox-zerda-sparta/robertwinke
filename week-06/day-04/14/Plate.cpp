@@ -10,6 +10,7 @@
 #include <time.h>
 #include <stdlib.h>
 
+
 using namespace std;
 
 string nums = "0123456789";
@@ -19,7 +20,7 @@ string letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 Plate::Plate(int number) {
   plateCount = number;
 
-  while(plates.size() != plateCount) {
+  while(plates.size() < plateCount) {
     addOnePlate();
   }
 }

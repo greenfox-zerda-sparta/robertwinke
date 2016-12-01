@@ -7,12 +7,12 @@
 #include <string>
 #include <vector>
 
+
 using namespace std;
 
 
 #ifndef PLATE_H_
 #define PLATE_H_
-
 
 class Plate {
 private:

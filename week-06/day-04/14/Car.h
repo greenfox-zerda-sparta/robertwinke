@@ -5,11 +5,12 @@
  *      Author: robertwinke
  */
 #include <string>
+#include "Plate.h"
+
 using namespace std;
 
 #ifndef CAR_H_
 #define CAR_H_
-
 
 class Car {
 private:

@@ -16,6 +16,15 @@ ParkingHouse::ParkingHouse(int row, int col, int floor) {
   vect = vector<vector<vector<Car*> > >
   (floor, vector<vector<Car*> >
   (col, vector<Car*>(row)));
+
+  for(unsigned int i = 0; i < vect.size(); i++) {
+    for (unsigned int j = 0; j < vect[0].size(); j++) {
+      for (unsigned int k = 0; k < vect[0][0].size(); k++) {
+        vect[i][j][k] = new Car();
+      }
+    }
+  }
+
 }
 
 vector<int> ParkingHouse::carSearch(string name, string color) {
