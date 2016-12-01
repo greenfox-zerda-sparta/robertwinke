@@ -16,11 +16,13 @@ using namespace std;
 
 class Plate {
 private:
-  int plateCount;
+  unsigned int plateCount;
   vector<string> plates;
 public:
   Plate(int);
   string getPlate(int);
+  void addOnePlate();
+  bool findPlate(string);
 };
 
 

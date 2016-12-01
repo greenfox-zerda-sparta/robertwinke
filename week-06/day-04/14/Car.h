@@ -14,7 +14,7 @@ using namespace std;
 class Car {
 private:
   static unsigned int VIN_COUNT;
-  const int VIN;   //should be const
+  const int VIN;
   string name;
   string color;
   string plate;
