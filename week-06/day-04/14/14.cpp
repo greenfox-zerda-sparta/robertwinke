@@ -24,14 +24,20 @@ int main() {
   srand(time(NULL));
   ParkingHouse p(4,4,8);
 
-  vector<int> carsToFind = p.carSearch("Zsiguli","Sárga");
+  vector<int> filteredCars = p.carSearch("Zsiguli","Sárga");
+  vector<Car*> filteredCars2 = p.carSearch2("Zsiguli","Sárga");
 
-
-  for (unsigned int i = 0; i < carsToFind.size(); i += 3) {
-    cout << p.vect[carsToFind[i]][carsToFind[i+1]][carsToFind[i+2]]->getName() << endl;
-    cout << p.vect[carsToFind[i]][carsToFind[i+1]][carsToFind[i+2]]->getPlate() << endl;
+  for (unsigned int i = 0; i < filteredCars.size(); i += 3) {
+    cout << p.getCarAt(filteredCars[i], filteredCars[i+1], filteredCars[i+2])->getName() << endl;
+    cout << p.getCarAt(filteredCars[i], filteredCars[i+1], filteredCars[i+2])->getPlate() << endl;
   }
 
+  cout << "====" << endl;
+
+  for (unsigned int i = 0; i < filteredCars2.size(); i++) {
+    cout << filteredCars2[i]->getName() << endl;
+    cout << filteredCars2[i]->getPlate() << endl;
+  }
 
   return 0;
 }

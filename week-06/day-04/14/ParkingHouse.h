@@ -19,10 +19,12 @@ private:
   int carRow;
   int carCol;
   int floor;
-public:
   vector<vector<vector<Car*> > > vect;
+public:
   ParkingHouse(int, int, int);
   vector<int> carSearch(string, string);
+  vector<Car*> carSearch2(string, string);
+  Car* getCarAt (int,int,int);
   ~ParkingHouse();
 
 };
