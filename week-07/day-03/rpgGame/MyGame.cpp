@@ -14,6 +14,7 @@ MyGame::MyGame() {
   readMapFromFile(v);
   heroX = 0;
   heroY = 0;
+  heroFace = "hero-down.bmp";
 }
 void MyGame::readMapFromFile(vector<vector<bool> >& v) {
   ifstream mapfile;
@@ -23,10 +24,10 @@ void MyGame::readMapFromFile(vector<vector<bool> >& v) {
     for (int j  = 0; j < 10; j++) {
       mapfile >> temp;
       if(temp == '1') {
-        v[j][i] = 1;
+        v[i][j] = 1;
       }
       else {
-        v[j][i] = 0;
+        v[i][j] = 0;
       }
     }
   }
@@ -36,25 +37,13 @@ void MyGame::init(GameContext& context) {
   context.load_file("floor.bmp");
   context.load_file("wall.bmp");
   context.load_file("hero-down.bmp");
+  context.load_file("hero-up.bmp");
+  context.load_file("hero-right.bmp");
+  context.load_file("hero-left.bmp");
 }
 void MyGame::render(GameContext& context) {
   drawMap(context);
   drawHero(context, heroX, heroY);
-
-  if (context.was_key_pressed(ARROW_DOWN)) {
-    heroY += 72;
-  }
-  else if (context.was_key_pressed(ARROW_UP)) {
-    heroY -= 72;
-  }
-  else if (context.was_key_pressed(ARROW_RIGHT)) {
-    heroX += 72;
-  }
-  else if (context.was_key_pressed(ARROW_LEFT)) {
-    heroX -= 72;
-  }
-
-
   context.render();
 }
 void MyGame::drawMap(GameContext& context) {
@@ -70,7 +59,40 @@ void MyGame::drawMap(GameContext& context) {
   }
 }
 void MyGame::drawHero(GameContext& context, int x, int y) {
-  context.draw_sprite("hero-down.bmp", x, y);
+
+  if (context.was_key_pressed(ARROW_DOWN)) {
+    heroFace = "hero-down.bmp";
+    if (heroY < 648) {
+      if (v[(heroX/72)][heroY/72+1]) {
+        heroY += 72;
+      }
+    }
+  }
+  else if (context.was_key_pressed(ARROW_UP)) {
+    heroFace = "hero-up.bmp";
+    if (heroY >= 72) {
+      if (v[(heroX/72)][heroY/72-1]) {
+        heroY -= 72;
+      }
+    }
+  }
+  else if (context.was_key_pressed(ARROW_RIGHT)) {
+    heroFace = "hero-right.bmp";
+    if (heroX < 648) {
+      if (v[(heroX/72)+1][heroY/72]) {
+        heroX += 72;
+      }
+    }
+  }
+  else if (context.was_key_pressed(ARROW_LEFT)) {
+    heroFace = "hero-left.bmp";
+    if (heroX >= 72) {
+      if (v[(heroX/72)-1][heroY/72]) {
+        heroX -= 72;
+      }
+    }
+  }
+  context.draw_sprite(heroFace, x, y);
 }
 MyGame::~MyGame() {
 }

@@ -18,6 +18,7 @@ class MyGame : public Game {
 private:
   vector<vector<bool> > v;
   int heroX, heroY;
+  string heroFace;
 public:
   MyGame();
   void readMapFromFile(vector<vector<bool> >& v);
