@@ -7,6 +7,9 @@
 
 #include "game-engine.hpp"
 #include "Map.hpp"
+#include "Hero.hpp"
+#include "Skeleton.hpp"
+#include "Boss.hpp"
 
 #ifndef MYGAME_HPP_
 #define MYGAME_HPP_
@@ -16,16 +19,14 @@ using namespace std;
 class MyGame : public Game {
 private:
   Map* myMap;
-  int squareSize;
-  int heroX, heroY;
-  string heroFace;
+  Hero* myHero;
+  Skeleton* mySkeleton;
+  Boss* myBoss;
 
 public:
   MyGame();
   void init(GameContext& context);
   void render(GameContext& context);
-  int keyCode(GameContext& context);
-  void drawHero(GameContext& context,int x, int y);
   virtual ~MyGame();
 };
 
