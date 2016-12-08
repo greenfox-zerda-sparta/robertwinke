@@ -30,40 +30,52 @@ void MyGame::render(GameContext& context) {
   context.render();
 }
 void MyGame::drawHero(GameContext& context, int x, int y) {
-
-  if (context.was_key_pressed(ARROW_DOWN)) {
-    heroFace = "hero-down.bmp";
-    if (heroY < 9) {
-      if (myMap->v[heroX][heroY+1]) {
-        heroY++;
-      }
-    }
-  }
-  else if (context.was_key_pressed(ARROW_UP)) {
+  switch (keyCode(context)) {
+  case 0:
     heroFace = "hero-up.bmp";
     if (heroY >= 1) {
       if (myMap->v[heroX][heroY-1]) {
         heroY--;
       }
     }
-  }
-  else if (context.was_key_pressed(ARROW_RIGHT)) {
+    break;
+  case 1:
     heroFace = "hero-right.bmp";
     if (heroX < 9) {
       if (myMap->v[heroX+1][heroY]) {
         heroX++;
       }
     }
-  }
-  else if (context.was_key_pressed(ARROW_LEFT)) {
+    break;
+  case 2:
+    heroFace = "hero-down.bmp";
+    if (heroY < 9) {
+      if (myMap->v[heroX][heroY+1]) {
+        heroY++;
+      }
+    }
+    break;
+  case 3:
     heroFace = "hero-left.bmp";
     if (heroX >= 1) {
       if (myMap->v[heroX-1][heroY]) {
         heroX--;
       }
     }
+    break;
+  case 4:
+    break;
   }
   context.draw_sprite(heroFace, x*squareSize, y*squareSize);
+}
+int MyGame::keyCode(GameContext& context) {
+  int keyCode;
+  for (int i = 0; i < 5; i++) {
+    if (context.was_key_pressed(i)) {
+      keyCode = i;
+    }
+  }
+  return keyCode;
 }
 MyGame::~MyGame() {
   delete myMap;

@@ -24,6 +24,7 @@ public:
   MyGame();
   void init(GameContext& context);
   void render(GameContext& context);
+  int keyCode(GameContext& context);
   void drawHero(GameContext& context,int x, int y);
   virtual ~MyGame();
 };
