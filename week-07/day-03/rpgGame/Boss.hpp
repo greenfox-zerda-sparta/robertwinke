@@ -16,8 +16,7 @@ using namespace std;
 
 class Boss: public Character {
 public:
-  Boss(vector<vector<bool> > v);
-  void drawCharacter(GameContext& context, int x, int y);
+  Boss();
 };
 
 

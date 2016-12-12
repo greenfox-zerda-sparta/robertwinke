@@ -7,16 +7,12 @@
 
 #include "Boss.hpp"
 
-
-Boss::Boss(vector<vector<bool> > v) {
+Boss::Boss(){
+  face = "boss.bmp";
   coordinateX = rand() % 8 + 1;
   coordinateY = rand() % 8 + 1;
-  while(v[coordinateX][coordinateY] != 1) {
+  while(Map::map[coordinateX][coordinateY] != 1) {
     coordinateX = rand() % 8 + 1;
     coordinateY = rand() % 8 + 1;
   }
-}
-
-void Boss::drawCharacter(GameContext& context, int x, int y) {
-  context.draw_sprite("boss.bmp", x*squareSize, y*squareSize);
 }

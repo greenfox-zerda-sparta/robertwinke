@@ -15,8 +15,7 @@ using namespace std;
 
 class Skeleton: public Character {
 public:
-  Skeleton(vector<vector<bool> > v);
-  void drawCharacter(GameContext& context, int x, int y);
+  Skeleton();
 };
 
 

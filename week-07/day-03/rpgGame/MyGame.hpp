@@ -19,9 +19,7 @@ using namespace std;
 class MyGame : public Game {
 private:
   Map* myMap;
-  Hero* myHero;
-  Skeleton* mySkeleton;
-  Boss* myBoss;
+  vector<Character*> characters;
 
 public:
   MyGame();

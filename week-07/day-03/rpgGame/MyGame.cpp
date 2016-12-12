@@ -11,9 +11,11 @@ using namespace std;
 
 MyGame::MyGame() {
   myMap = new Map;
-  myHero = new Hero;
-  mySkeleton = new Skeleton(myMap->v);
-  myBoss = new Boss(myMap->v);
+  characters.push_back(new Hero());
+  for (int i = 0; i < 3; i++) {
+    characters.push_back(new Skeleton());
+  }
+  characters.push_back(new Boss());
 }
 void MyGame::init(GameContext& context) {
   context.load_file("floor.bmp");
@@ -27,12 +29,15 @@ void MyGame::init(GameContext& context) {
 }
 void MyGame::render(GameContext& context) {
   myMap->drawMap(context);
-  mySkeleton->drawCharacter(context,mySkeleton->getCoordinateX(),mySkeleton->getCoordinateY());
-  myBoss->drawCharacter(context,myBoss->getCoordinateX(),myBoss->getCoordinateY());
-  myHero->drawCharacter(context,myHero->getCoordinateX(),myHero->getCoordinateY(),myMap->v);
+  characters[0]->moveHero(context);
+  for (unsigned int i = 0; i < characters.size(); i++) {
+    characters[i]->drawCharacter(context);
+  }
   context.render();
 }
 MyGame::~MyGame() {
   delete myMap;
-  delete myHero;
+  for (unsigned int i = 0; i < characters.size(); i++) {
+    delete characters[i];
+  }
 }

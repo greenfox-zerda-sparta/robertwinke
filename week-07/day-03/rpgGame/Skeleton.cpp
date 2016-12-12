@@ -7,15 +7,12 @@
 
 #include "Skeleton.hpp"
 
-Skeleton::Skeleton(vector<vector<bool> > v) {
+Skeleton::Skeleton() {
+  face = "skeleton.bmp";
   coordinateX = rand() % 8 + 1;
   coordinateY = rand() % 8 + 1;
-  while(v[coordinateX][coordinateY] != 1) {
+  while(Map::map[coordinateX][coordinateY] != 1) {
     coordinateX = rand() % 8 + 1;
     coordinateY = rand() % 8 + 1;
   }
-}
-
-void Skeleton::drawCharacter(GameContext& context, int x, int y) {
-  context.draw_sprite("skeleton.bmp", x*squareSize, y*squareSize);
 }

@@ -16,10 +16,11 @@ using namespace std;
 
 class Hero: public Character {
 private:
-  string heroFace;
 public:
   Hero();
-  void drawCharacter(GameContext& context, int x, int y, vector<vector<bool> > v);
+  void moveHero(GameContext& context);
+  void takeAStep(int directionX, int directionY);
+  bool isItFloor(int relativeX, int relativeY);
   int keyCode(GameContext& context);
 };
 

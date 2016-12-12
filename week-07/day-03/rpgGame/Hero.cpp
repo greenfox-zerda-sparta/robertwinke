@@ -7,49 +7,45 @@
 
 #include "Hero.hpp"
 
+
 Hero::Hero() {
   coordinateX = 0;
   coordinateY = 0;
-  heroFace = "hero-down.bmp";
+  face = "hero-down.bmp";
 }
-void Hero::drawCharacter(GameContext& context, int x, int y, vector<vector<bool> > v) {
+void Hero::moveHero(GameContext& context) {
   switch (keyCode(context)) {
   case 0:
-    heroFace = "hero-up.bmp";
-    if (coordinateY >= 1) {
-      if (v[coordinateX][coordinateY-1]) {
-        coordinateY--;
-      }
-    }
+    face = "hero-up.bmp";
+    takeAStep(0, -1);
     break;
   case 1:
-    heroFace = "hero-right.bmp";
-    if (coordinateX < 9) {
-      if (v[coordinateX+1][coordinateY]) {
-        coordinateX++;
-      }
-    }
+    face = "hero-right.bmp";
+    takeAStep(1, 0);
     break;
   case 2:
-    heroFace = "hero-down.bmp";
-    if (coordinateY < 9) {
-      if (v[coordinateX][coordinateY+1]) {
-        coordinateY++;
-      }
-    }
+    face = "hero-down.bmp";
+    takeAStep(0, 1);
     break;
   case 3:
-    heroFace = "hero-left.bmp";
-    if (coordinateX >= 1) {
-      if (v[coordinateX-1][coordinateY]) {
-        coordinateX--;
-      }
-    }
-    break;
-  case 4:
+    face = "hero-left.bmp";
+    takeAStep(-1, 0);
     break;
   }
-  context.draw_sprite(heroFace, x*squareSize, y*squareSize);
+}
+void Hero::takeAStep(int directionX, int directionY) {
+  if (isItFloor(directionX, directionY)) {
+    coordinateX += directionX;
+    coordinateY += directionY;
+  }
+}
+bool Hero::isItFloor(int relativeX, int relativeY) {
+  if (coordinateX + relativeX >= 0 && coordinateX+ relativeX < 10 && coordinateY + relativeY >= 0 && coordinateY + relativeY < 10) {
+    if (Map::map[coordinateX + relativeX][coordinateY + relativeY]) {
+      return true;
+    }
+  }
+  return false;
 }
 int Hero::keyCode(GameContext& context) {
   int keyCode;

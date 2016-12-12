@@ -15,13 +15,17 @@
 using namespace std;
 
 class Map {
-public:
+private:
   int squareSize;
-  vector<vector<bool> > v;
+  static vector<vector<bool> > map;
+  void readMapFromFile(vector<vector<bool> >& v);
 public:
   Map();
-  void readMapFromFile(vector<vector<bool> >& v);
   void drawMap(GameContext& context);
+
+  friend class Hero;
+  friend class Boss;
+  friend class Skeleton;
 };
 
 
