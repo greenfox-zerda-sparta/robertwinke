@@ -12,9 +12,9 @@
 using namespace std;
 
 int main(int argc, char* argv[]) {
-  vector<vector<int> > map = vector<vector<int> > (19,vector<int>(19,1));
+  vector<vector<int> > map = vector<vector<int> > (20,vector<int>(20,0));
 
-  GameContext myContext(map,600,600);
+  GameContext myContext(map, 600, 600);
 
 	return 0;
 }
