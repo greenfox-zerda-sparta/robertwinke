@@ -6,6 +6,8 @@
  */
 
 #include "SDL2/SDL.h"
+#include <string>
+#include <vector>
 
 #ifndef GAMECONTEXT_HPP_
 #define GAMECONTEXT_HPP_
@@ -14,10 +16,15 @@
 class GameContext {
 private:
   SDL_Window* window;
-  SDL_Surface* windowSurface;
-  SDL_Surface* imageSurface;
+  SDL_Renderer* renderer;
+  SDL_Texture* imageTexture;
+
 public:
-  GameContext();
+  GameContext(std::vector<std::vector<int> >&, int, int);
+  void run(std::vector<std::vector<int> >&);
+  void loadTexture(std::string);
+  void drawTexture(int, int);
+  void render();
   ~GameContext();
 
 };
