@@ -9,15 +9,19 @@
 
 
 Game::Game() {
-  myGameLogic = new GameLogic;
-  myGameContext = new GameContext;
   squareSize = 30;
+  myGameLogic = new GameLogic;
+  myGameContext = new GameContext(600, 600, squareSize);
 }
 void Game::run( ) {
+
   bool isRunning = true;
   int turns = 0;
+
+  Uint32 starting_tick;
   SDL_Event event;
   while(isRunning) {
+    starting_tick = SDL_GetTicks();
     if(SDL_PollEvent(&event)) {
       switch(event.type) {
       case SDL_QUIT:
@@ -40,6 +44,7 @@ void Game::run( ) {
         break;
       }
     }
+    myGameContext->capFrameRate(starting_tick);
     myGameContext->drawMap(myGameLogic->getMap());
     myGameContext->render();
   }

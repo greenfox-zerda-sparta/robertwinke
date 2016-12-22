@@ -13,6 +13,7 @@
 #ifndef GAMECONTEXT_HPP_
 #define GAMECONTEXT_HPP_
 
+#define fps 30
 
 class GameContext {
 private:
@@ -23,10 +24,11 @@ private:
 
 public:
   GameContext();
-  GameContext(int, int);
+  GameContext(int, int, int);
   void loadTexture(std::string, std::string);
   void drawTexture(std::string, int, int);
   void drawMap(std::vector<std::vector<int> >&);
+  void capFrameRate(Uint32);
   void render();
   ~GameContext();
 

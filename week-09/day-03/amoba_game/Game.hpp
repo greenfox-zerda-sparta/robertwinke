@@ -10,6 +10,7 @@
 #ifndef GAME_HPP_
 #define GAME_HPP_
 
+
 class Game {
 private:
   GameContext* myGameContext;

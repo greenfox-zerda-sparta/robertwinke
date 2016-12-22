@@ -19,8 +19,8 @@ GameContext::GameContext() {
   loadTexture("o","blacko.bmp");
 }
 
-GameContext::GameContext(int screenWidth, int screenHeight) {
-  squareSize = 30;
+GameContext::GameContext(int screenWidth, int screenHeight, int squareSize) {
+  this->squareSize = squareSize;
   SDL_Init(SDL_INIT_VIDEO);
   window = SDL_CreateWindow("Gomoku", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, screenWidth, screenHeight,SDL_WINDOW_SHOWN);
   renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
@@ -57,6 +57,11 @@ void GameContext::drawMap(std::vector<std::vector<int> >& newMap) {
         drawTexture("o",i,j);
       }
     }
+  }
+}
+void GameContext::capFrameRate(Uint32 starting_tick) {
+  if ((1000 / fps) > (SDL_GetTicks() - starting_tick)) {
+    SDL_Delay(1000 / fps - (SDL_GetTicks() - starting_tick));
   }
 }
 void GameContext::render() {
