@@ -8,8 +8,18 @@
 #include "GameContext.hpp"
 #include <iostream>
 
+GameContext::GameContext() {
+  squareSize = 30;
+  SDL_Init(SDL_INIT_VIDEO);
+  window = SDL_CreateWindow("Gomoku", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 600, 600,SDL_WINDOW_SHOWN);
+  renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
-GameContext::GameContext(std::vector<std::vector<int> >& newMap, int screenWidth, int screenHeight) {
+  loadTexture("empty","floor.bmp");
+  loadTexture("x","blackx.bmp");
+  loadTexture("o","blacko.bmp");
+}
+
+GameContext::GameContext(int screenWidth, int screenHeight) {
   squareSize = 30;
   SDL_Init(SDL_INIT_VIDEO);
   window = SDL_CreateWindow("Gomoku", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, screenWidth, screenHeight,SDL_WINDOW_SHOWN);
@@ -19,36 +29,6 @@ GameContext::GameContext(std::vector<std::vector<int> >& newMap, int screenWidth
   loadTexture("x","blackx.bmp");
   loadTexture("o","blacko.bmp");
 
-  run(newMap);
-}
-
-void GameContext::run(std::vector<std::vector<int> >& newMap) {
-  bool isRunning = true;
-  int turns = 0;
-  SDL_Event event;
-  while(isRunning) {
-    if(SDL_PollEvent(&event)) {
-      switch(event.type) {
-      case SDL_QUIT:
-        isRunning = false;
-        break;
-      case SDL_MOUSEBUTTONDOWN:
-        int x = 0, y = 0;
-        SDL_GetMouseState(&x, &y);
-        if(turns % 2 == 0 && newMap[x/30][y/30] == 0) {
-          newMap[x/squareSize][y/squareSize] = 1;
-          turns++;
-        }
-        else if(turns % 2 == 1 && newMap[x/30][y/30] == 0) {
-          newMap[x/squareSize][y/squareSize] = 2;
-          turns++;
-        }
-        break;
-      }
-    }
-    drawMap(newMap);
-    render();
-  }
 }
 
 void GameContext::loadTexture(std::string spriteName,std::string filePath) {

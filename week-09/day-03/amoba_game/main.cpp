@@ -7,17 +7,17 @@
 //============================================================================
 
 #include <iostream>
-#include "GameContext.hpp"
-#include "GameLogic.hpp"
+
+#include "Game.hpp"
 
 using namespace std;
 
 int main(int argc, char* argv[]) {
 
-  GameLogic myGameLogic;
-  vector<vector<int> > map = vector<vector<int> > (20,vector<int>(20,0));
 
-  GameContext myContext(myGameLogic.getMap(), 600, 600);
+
+  Game myGame;
+  myGame.run();
 
 	return 0;
 }

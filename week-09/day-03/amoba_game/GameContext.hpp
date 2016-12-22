@@ -22,8 +22,8 @@ private:
   int squareSize;
 
 public:
-  GameContext(std::vector<std::vector<int> >&, int, int);
-  void run(std::vector<std::vector<int> >&);
+  GameContext();
+  GameContext(int, int);
   void loadTexture(std::string, std::string);
   void drawTexture(std::string, int, int);
   void drawMap(std::vector<std::vector<int> >&);
