@@ -10,6 +10,7 @@
 
 
 GameContext::GameContext(std::vector<std::vector<int> >& newMap, int screenWidth, int screenHeight) {
+  squareSize = 30;
   SDL_Init(SDL_INIT_VIDEO);
   window = SDL_CreateWindow("Gomoku", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, screenWidth, screenHeight,SDL_WINDOW_SHOWN);
   renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
@@ -26,19 +27,6 @@ void GameContext::run(std::vector<std::vector<int> >& newMap) {
   int turns = 0;
   SDL_Event event;
   while(isRunning) {
-    for (int i = 0; i < 20; i++) {
-      for (int j = 0; j < 20; j++) {
-        if (newMap[i][j] == 0) {
-          drawTexture("empty",i,j);
-        }
-        else if (newMap[i][j] == 1) {
-          drawTexture("x",i,j);
-        }
-        else if (newMap[i][j] == 2) {
-          drawTexture("o",i,j);
-        }
-      }
-    }
     if(SDL_PollEvent(&event)) {
       switch(event.type) {
       case SDL_QUIT:
@@ -48,17 +36,17 @@ void GameContext::run(std::vector<std::vector<int> >& newMap) {
         int x = 0, y = 0;
         SDL_GetMouseState(&x, &y);
         if(turns % 2 == 0 && newMap[x/30][y/30] == 0) {
-          newMap[x/30][y/30] = 1;
+          newMap[x/squareSize][y/squareSize] = 1;
           turns++;
         }
         else if(turns % 2 == 1 && newMap[x/30][y/30] == 0) {
-          newMap[x/30][y/30] = 2;
+          newMap[x/squareSize][y/squareSize] = 2;
           turns++;
         }
         break;
       }
     }
-
+    drawMap(newMap);
     render();
   }
 }
@@ -70,11 +58,26 @@ void GameContext::loadTexture(std::string spriteName,std::string filePath) {
 }
 void GameContext::drawTexture(std::string spriteName, int x, int y) {
   SDL_Rect temp;
-  temp.x = x * 30;
-  temp.y = y * 30;
-  temp.w = 30;
-  temp.h = 30;
+  temp.x = x * squareSize;
+  temp.y = y * squareSize;
+  temp.w = squareSize;
+  temp.h = squareSize;
   SDL_RenderCopy(renderer, sprites[spriteName], NULL, &temp);
+}
+void GameContext::drawMap(std::vector<std::vector<int> >& newMap) {
+  for (int i = 0; i < 20; i++) {
+    for (int j = 0; j < 20; j++) {
+      if (newMap[i][j] == 0) {
+        drawTexture("empty",i,j);
+      }
+      else if (newMap[i][j] == 1) {
+        drawTexture("x",i,j);
+      }
+      else if (newMap[i][j] == 2) {
+        drawTexture("o",i,j);
+      }
+    }
+  }
 }
 void GameContext::render() {
   SDL_RenderPresent(renderer);

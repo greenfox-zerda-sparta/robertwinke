@@ -19,12 +19,14 @@ private:
   SDL_Window* window;
   SDL_Renderer* renderer;
   std::map<std::string, SDL_Texture*> sprites;
+  int squareSize;
 
 public:
   GameContext(std::vector<std::vector<int> >&, int, int);
   void run(std::vector<std::vector<int> >&);
   void loadTexture(std::string, std::string);
   void drawTexture(std::string, int, int);
+  void drawMap(std::vector<std::vector<int> >&);
   void render();
   ~GameContext();
 
