@@ -16,11 +16,11 @@ private:
 public:
   GameLogic2();
   std::vector<std::vector<int> >& getMap();
-  bool isFiveInRow(unsigned int, unsigned int);
-  bool isFiveInCol(unsigned int, unsigned int);
-  bool isFiveDiagonalDown(unsigned int, unsigned int);
-  bool isFiveDiagonalUp(unsigned int, unsigned int);
-  bool isGameWon(unsigned int, unsigned int);
+  bool isFiveInRow(int, int);
+  bool isFiveInCol(int, int);
+  bool isFiveDiagonalDown(int, int);
+  bool isFiveDiagonalUp(int, int);
+  bool isGameWon(int, int);
 };
 
 
