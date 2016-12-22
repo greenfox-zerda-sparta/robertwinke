@@ -4,7 +4,7 @@
  *  Created on: Dec 22, 2016
  *      Author: robertwinke
  */
-#include "GameLogic.hpp"
+#include "GameLogic2.hpp"
 #include "GameContext.hpp"
 
 #ifndef GAME_HPP_
@@ -14,7 +14,7 @@
 class Game {
 private:
   GameContext* myGameContext;
-  GameLogic* myGameLogic;
+  GameLogic2* myGameLogic;
   int squareSize;
 public:
   Game();

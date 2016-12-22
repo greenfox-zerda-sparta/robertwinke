@@ -7,14 +7,13 @@
 
 #include "GameLogic.hpp"
 
-
 GameLogic::GameLogic() {
   map = std::vector<std::vector<int> > (20,std::vector<int>(20,0));
 }
-
 std::vector<std::vector<int> >& GameLogic::getMap() {
   return map;
 }
+
 bool GameLogic::isFiveInRow(int x, int y) {
   int i = 1;
   if (x < 15) {

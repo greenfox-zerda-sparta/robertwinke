@@ -25,14 +25,15 @@ GameContext::GameContext(int screenWidth, int screenHeight, int squareSize) {
   window = SDL_CreateWindow("Gomoku", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, screenWidth, screenHeight,SDL_WINDOW_SHOWN);
   renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
-  loadTexture("empty","floor.bmp");
-  loadTexture("x","blackx.bmp");
-  loadTexture("o","blacko.bmp");
+  loadTexture("empty","floor.jpg");
+  loadTexture("x","blackx.jpg");
+  loadTexture("o","blacko.jpg");
 
 }
 
 void GameContext::loadTexture(std::string spriteName,std::string filePath) {
-  SDL_Surface* surface = SDL_LoadBMP(filePath.c_str());
+  //SDL_Surface* surface = SDL_LoadBMP(filePath.c_str());
+  SDL_Surface* surface = IMG_Load(filePath.c_str());
   sprites[spriteName] = SDL_CreateTextureFromSurface(renderer, surface);
   SDL_FreeSurface(surface);
 }

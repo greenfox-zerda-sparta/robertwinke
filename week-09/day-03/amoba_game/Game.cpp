@@ -10,7 +10,7 @@
 
 Game::Game() {
   squareSize = 30;
-  myGameLogic = new GameLogic;
+  myGameLogic = new GameLogic2;
   myGameContext = new GameContext(600, 600, squareSize);
 }
 void Game::run( ) {
@@ -32,14 +32,21 @@ void Game::run( ) {
         SDL_GetMouseState(&x, &y);
         if(turns % 2 == 0 && myGameLogic->getMap()[x / squareSize][y / squareSize] == 0) {
           myGameLogic->getMap()[x/squareSize][y/squareSize] = 1;
+
+          if (myGameLogic->isGameWon(x / squareSize, y / squareSize)) {
+            isRunning = false;
+          }
+
           turns++;
         }
         else if(turns % 2 == 1 && myGameLogic->getMap()[x / squareSize][y / squareSize] == 0) {
           myGameLogic->getMap()[x/squareSize][y/squareSize] = 2;
+
+          if (myGameLogic->isGameWon(x / squareSize, y / squareSize)) {
+            isRunning = false;
+          }
+
           turns++;
-        }
-        if (myGameLogic->isGameWon()) {
-          isRunning = false;
         }
         break;
       }
